@@ -66,3 +66,26 @@ def stations_by_river(stations):
             stations_by_river[station.river].append(station.name)
             stations_by_river[station.river].sort()
     return stations_by_river
+
+def rivers_by_station_number(stations, N):
+    rivers_by_station_number = {}
+    for station in stations:
+        if station.river not in rivers_by_station_number:
+            rivers_by_station_number[station.river] = 1
+        else:
+            rivers_by_station_number[station.river] += 1
+        
+
+    sorted_rivers = sorted(rivers_by_station_number.items(), key=lambda x: x[1], reverse=True)
+
+    
+    top_rivers = sorted_rivers[:N]
+    if len(sorted_rivers) > N:
+        nth_count = sorted_rivers[N-1][1]
+        for river, count in sorted_rivers[N:]:
+            if count == nth_count:
+                top_rivers.append((river, count))
+            else:
+                break
+
+    return top_rivers
