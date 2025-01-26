@@ -32,7 +32,7 @@ def run():
         lon="lon",
         text="station",
         zoom=3,
-        mapbox_style="carto-positron"  # or "open-street-map", "stamen-terrain", etc.
+        mapbox_style="carto-positron"  # can also use "open-street-map", "stamen-terrain"
     )
 
     
