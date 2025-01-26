@@ -19,10 +19,10 @@ def stations_by_distance(stations, p):
     pass
 
 import math
-def haversine1(at1, long1, lat2, long2):
+def haversine1(lat1, long1, lat2, long2):
     lat1, long1, lat2, long2 = map(math.radians, [lat1, long1, lat2, long2])
     dlat = lat2 - lat1
-    dlon = lon2 - lon1
+    dlon = long2 - long1
     a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     
@@ -38,9 +38,9 @@ def stations_in_radius(stations, centre, r):
     for station in stations:
         lat_station, long_station = station.coord
         distance = haversine1(lat_centre, long_centre, lat_station, long_station)
-        if distance <= r:
+        if distance < r:
             
-            stations_in_radius.append(station)
+            stations_in_radius.append(station.name)
             stations_in_radius.sort()
 
             
