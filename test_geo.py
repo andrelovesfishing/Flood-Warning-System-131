@@ -1,6 +1,10 @@
 from floodsystem.geo import haversine1
 from haversine import haversine
 from floodsystem.stationdata import build_station_list
+from floodsystem.geo import stations_by_river 
+from floodsystem.geo import rivers_by_station_number
+
+
 
 def test_haversine1():
     given = haversine1((52.2053, 0.1218), (50.0, 25.0))
@@ -25,6 +29,18 @@ def test_stations_in_radius(r):
     assert type(variable[0]) == str
 
 test_stations_by_distance()
-     
-   
-    
+
+
+def test_stations_by_river():
+    stations = build_station_list()
+    variable = stations_by_river(stations)
+    assert type(variable) == dict
+        
+
+def test_rivers_by_station_number():
+    stations = build_station_list()
+    variable = rivers_by_station_number(stations, 13)
+    assert type(variable) == list
+    if len(variable) > 13:
+       for river, count in variable[13:]:
+           assert count == variable[12][1]
