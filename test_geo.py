@@ -3,12 +3,14 @@ from haversine import haversine
 from floodsystem.stationdata import build_station_list
 
 def test_haversine1():
+    """Test manual haversine"""
     given = haversine1((52.2053, 0.1218), (50.0, 25.0))
     answer = haversine((52.2053, 0.1218), (50.0, 25.0))
     assert given == answer
 
 import random
 def test_stations_by_distance():
+    """Tests type of values returned"""
     from floodsystem.geo import stations_by_distance
     from floodsystem.stationdata import build_station_list
     stations = build_station_list()
@@ -18,12 +20,13 @@ def test_stations_by_distance():
 
 from floodsystem.geo import stations_in_radius
 
-def test_stations_in_radius(r):
-    
+def test_stations_in_radius():
+    """Ensures stations given """
     stations = build_station_list()
     variable = stations_in_radius(stations, (25.0, 10.0) ,5)
-    assert type(variable[0]) == str
+    assert type(variable) == list
 
+test_stations_in_radius()
 test_stations_by_distance()
      
    
