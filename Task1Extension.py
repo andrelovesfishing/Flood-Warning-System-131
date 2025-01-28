@@ -24,6 +24,7 @@ def run():
         'lon': longitudes,
         'station': places
     }
+    #Using a panda dictionary data structure makes the process more efficient
     df = pd.DataFrame(data)
 
     fig = px.scatter_mapbox(
@@ -32,7 +33,7 @@ def run():
         lon="lon",
         text="station",
         zoom=3,
-        mapbox_style="carto-positron"  # can also use "open-street-map", "stamen-terrain"
+        mapbox_style="carto-positron"
     )
 
     

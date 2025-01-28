@@ -4,6 +4,8 @@ from floodsystem.stationdata import build_station_list
 def run():
     """Requirements for Task 1D"""
     stations = build_station_list()
+
+    #Creates a dictionary data structure that assigns stations to their respective rivers
     stations_by_river_dict = stations_by_river(stations)
 
     print(f"Number of rivers with at least one station: {len(stations_by_river_dict)}")
