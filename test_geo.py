@@ -25,7 +25,7 @@ def test_stations_by_distance():
 from floodsystem.geo import stations_in_radius
 
 def test_stations_in_radius():
-    """Ensures stations given """
+    """Ensures stations given are in a list data structure"""
     stations = build_station_list()
     variable = stations_in_radius(stations, (25.0, 10.0) ,5)
     assert type(variable) == list
@@ -35,6 +35,7 @@ test_stations_by_distance()
 
 
 def test_stations_by_river():
+    """Ensures returned data structure is a dictionary"""
     stations = build_station_list()
     variable = stations_by_river(stations)
     assert type(variable) == dict

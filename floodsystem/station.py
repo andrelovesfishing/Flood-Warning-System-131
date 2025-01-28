@@ -31,6 +31,7 @@ class MonitoringStation:
         self.latest_level = None
 
     def __lt__(self, other):
+        """Redifines less than function"""
         return self.name < other.name
 
     def __repr__(self):
@@ -44,6 +45,7 @@ class MonitoringStation:
         return d
 
     def typical_range_consistent(self):
+        """Returns False if object is inconsistent (range is faulty or no data given), or True if consistent"""
         if self.typical_range is None:
             return False
         elif self.typical_range[0] > self.typical_range[1]:
@@ -52,6 +54,7 @@ class MonitoringStation:
             return True
 
 def inconsistent_typical_range_stations(stations):
+    """Returns a list of stations that give inconsistent data"""
     inconsistent_stations = []
     for station in stations:
         if station.typical_range_consistent() == False:
