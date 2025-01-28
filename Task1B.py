@@ -24,7 +24,8 @@ def run():
     #Creates a new list that includes town of station
     for item in list_of_station_distance:
         newlist.append((item[0], locate_town(stations, item[0]), item[1]))
-    print (newlist)
+    print (newlist[:10])
+    print (newlist[-10:])
         
 
 if __name__ == "__main__":

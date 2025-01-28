@@ -15,8 +15,12 @@ def stations_by_distance(stations, p):
     for station in stations:
         list_of_stations.append((station.name, haversine(station.coord, p)))
     list_of_stations = sorted_by_key(list_of_stations, 1)
-    print(list_of_stations)
-    pass
+    return list_of_stations
+
+def locate_town(stations, station_name):
+    for station in stations:
+        if station.name == station_name:
+            return station.town
 
 import math
 "function to calculate the distance between two points on the Earth given their latitude and longitude"
