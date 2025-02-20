@@ -5,7 +5,9 @@ from floodsystem.station import MonitoringStation
 
 def plot_water_levels(station, dates, levels):
     """Plot water levels for a station."""
-
+    if len(dates) != len(levels):
+        raise ValueError("Length of dates and levels must be the same")
+    
     v = station.typical_range[0]
     h = station.typical_range[1]
     # Plot
