@@ -33,6 +33,8 @@ class MonitoringStation:
     def __lt__(self, other):
         """Redifines less than function"""
         return self.name < other.name
+    
+    
 
     def __repr__(self):
         d = "Station name:     {}\n".format(self.name)
