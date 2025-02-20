@@ -11,3 +11,14 @@ def stations_level_over_threshold(stations, tol):
     
     stations_over_threshold = sorted(stations_over_threshold, key=lambda x: x[1], reverse=True)
     return stations_over_threshold
+
+def stations_highest_rel_level(stations, N):
+    update_water_levels(stations)
+    stations_over_threshold = []
+    for station in stations:
+        if station.relative_water_level() is not None and station.typical_range_consistent() is True:
+            stations_over_threshold.append((station.name, station.relative_water_level()))
+    
+    stations_over_threshold = sorted(stations_over_threshold, key=lambda x: x[1], reverse=True)
+    stations_over_threshold = stations_over_threshold[0:N]
+    return stations_over_threshold
