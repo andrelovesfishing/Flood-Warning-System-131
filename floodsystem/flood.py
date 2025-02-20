@@ -1,15 +1,13 @@
+from floodsystem.station import MonitoringStation
+from floodsystem.stationdata import update_water_levels
+
 def stations_level_over_threshold(stations, tol):
-    pass
-
-
-
-def stations_highest_rel_level(stations, N):
-    """Return a list of the N stations with the highest relative water level."""
-    # Filter out stations with no relative water level data
-    stations_with_data = [station for station in stations if station.relative_water_level() is not None]
+    update_water_levels(stations)
+    stations_over_threshold = []
+    for station in stations:
+        if station.relative_water_level() is not None and station.typical_range_consistent() is True:
+            if station.relative_water_level() > tol:
+                stations_over_threshold.append((station.name, station.relative_water_level()))
     
-    # Sort the stations by relative water level in descending order
-    stations_with_data.sort(key=lambda station: station.relative_water_level(), reverse=True)
-    
-    # Return the top N stations
-    return stations_with_data[:N]
+    stations_over_threshold = sorted(stations_over_threshold, key=lambda x: x[1], reverse=True)
+    return stations_over_threshold
