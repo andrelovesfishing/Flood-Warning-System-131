@@ -5,15 +5,15 @@ from floodsystem.datafetcher import fetch_measure_levels
 import datetime
 
 def run():
+    # Build list of stations
     stations = build_station_list()
+
     top_five_stations = []
     stations_list = stations_highest_rel_level(stations,5)
     for item in stations_list:
         top_five_stations.append(item[0])
 
     print(top_five_stations)
-    # Build list of stations
-    
    
     # Station name to find
     for station in top_five_stations:
@@ -41,6 +41,7 @@ def run():
             list_of_dates.append(date.replace(tzinfo=None))
             list_of_levels.append(level)
     # Print level history
+        print(dates,levels)
     
         plot_water_levels(station_cam, list_of_dates, list_of_levels)
 
