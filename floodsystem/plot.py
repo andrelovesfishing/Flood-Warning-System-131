@@ -11,9 +11,10 @@ def plot_water_levels(station, dates, levels):
 
     low = station.typical_range[0]
     high = station.typical_range[1]
-    
+
     if len(dates) != len(levels):
         raise ValueError("Length of dates and levels must be the same")
+    
     # Plot
     plt.plot(dates, levels)
 
@@ -31,11 +32,17 @@ def plot_water_levels(station, dates, levels):
     plt.show()
 
 def plot_water_level_with_fit(station, dates, levels, p):
+    
+    low = station.typical_range[0]
+    high = station.typical_range[1]
+
+    if len(dates) != len(levels):
+        raise ValueError("Length of dates and levels must be the same")
+
     poly_coeff, d0 = polyfit(dates,levels,p)
     true_dates = mdates.date2num(dates)
-    print(poly_coeff, "- poly")
     polynomial_expression = np.poly1d(poly_coeff)
-    print(polynomial_expression, "- y")
+
     plt.plot(dates, levels)
     plt.plot(dates,polynomial_expression(true_dates))
     
@@ -45,5 +52,8 @@ def plot_water_level_with_fit(station, dates, levels, p):
     plt.ylabel('water level (m)')
     plt.xticks(rotation=45)
     plt.title(station.name)
+    plt.axhline(low, color= 'red', linestyle='--', label='low value')
+    plt.axhline(high, color='blue', linestyle='--', label='high value')
+
 
     plt.show()
