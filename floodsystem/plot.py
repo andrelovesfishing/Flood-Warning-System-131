@@ -11,6 +11,9 @@ def plot_water_levels(station, dates, levels):
 
     low = station.typical_range[0]
     high = station.typical_range[1]
+    
+    if len(dates) != len(levels):
+        raise ValueError("Length of dates and levels must be the same")
     # Plot
     plt.plot(dates, levels)
 
