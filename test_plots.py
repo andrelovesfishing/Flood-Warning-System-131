@@ -3,6 +3,7 @@ import datetime as dte
 from floodsystem.stationdata import build_station_list
 from floodsystem.station import MonitoringStation
 from floodsystem.plot import plot_water_levels
+import pytest
 
 
 
@@ -14,8 +15,7 @@ def test_plot_water_levels():
     dates = [dte.datetime(2023, 1, 1), dte.datetime(2023, 1, 2), dte.datetime(2023, 1, 3)]
     levels = [0.6, 0.8]
     
-    
-    plot_water_levels(station, dates, levels)
-    
+    with pytest.raises(ValueError):
+        plot_water_levels(station, dates, levels)
 
 
