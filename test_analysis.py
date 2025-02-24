@@ -5,11 +5,6 @@ import pytest
 from floodsystem.analysis import polyfit
 
 
-
-
-
-
-
 def test_polyfit_basic():
     # Test basic functionality with simple known data
     dates = [datetime(2020, 1, 1), datetime(2020, 2, 1), datetime(2020, 3, 1)]
@@ -36,6 +31,4 @@ def test_polyfit_input():
     dates = [datetime(2020, 1, 1), datetime(2020, 2, 1), datetime(2020, 3, 1)]
     true_dates = [mdates.date2num(d) for d in dates]    
     for item in true_dates:
-        assert type(item) == float
-        
-            
+        assert type(item) == np.float64
